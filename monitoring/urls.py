@@ -20,8 +20,8 @@ from . import views
 from django.views.decorators.csrf import csrf_exempt
 
 
-from django.config import settings
-from django.config.urls.static import static
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url('^sensores/ver/(?P<pk>\d+)/$', csrf_exempt(views.voy), name='voy'),

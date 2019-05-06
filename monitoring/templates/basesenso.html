@@ -1,0 +1,135 @@
+{% extends 'basesenso0.html' %}
+{% block content %}
+
+<div id="inb2">
+<div class="row">
+<br>
+
+<br>
+
+                            <div class="col-md-5 col-sm-5 col-xs-12 gutter">
+<br>
+                                <div class="sales report">
+
+                                    <h2>Información General</h2>
+                                    <br>
+                                    <br>
+                                      <h2>Nombre: </h2>
+                                      <br>
+                                      <h1>Sistema </h1>
+                                      <br>
+                                      <h2>Puntos:</h2>
+                                      <br>
+                                      <h1>20</h1>
+                                      <br>
+                                      <h2>Sensores:</h2>
+                                      <br>
+                                      <h1>30</h1>
+
+                                </div>
+
+
+
+
+                          </div>
+                          <div class="col-md-7 col-sm-7 col-xs-12 gutter">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1988.4755516382315!2d-74.06599664212365!3d4.602779499164053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99bccab5697d%3A0x1da99c6575ca804b!2sUniversidad+de+los+Andes!5e0!3m2!1ses-419!2sco!4v1557100216950!5m2!1ses-419!2sco" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                          </div>
+
+</div>
+
+  </div>
+
+
+
+<div id="container1" style="Width: 1000px; height: 400px; margin: 0 auto" class="border"></div>
+
+<br>
+
+                    <table class="table table-striped">
+     <tr>
+                            <th>Fecha</th>
+                            <th>Sensor</th>
+                            <th>Registro</th>
+                        </tr>
+                        {% for x in tamx %}
+                        <tr>
+                            <td>{{ x.fecha }}</td>
+                            <td>{{ x.id }}</td>
+                            <td>{{ x.lectura }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+<br>
+
+<br>
+
+    <script>
+      _categories = {{x1|safe}};
+      _values = {{y1|safe}};
+
+      Highcharts.chart('container1', {
+
+
+    chart: {
+              type: 'column'
+    },
+
+
+    title: {
+              text: 'Ultimo registro sensores'
+    },
+    subtitle: {
+              text: ')'
+    },
+
+    xAxis: {
+              categories:_categories,
+              crosshair: true
+    },
+    yAxis: {
+              min: 0,
+              title: {
+      text: 'Cantidad de usuarios'
+              }
+    },
+    tooltip: {
+              headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+              pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+      '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+              footerFormat: '</table>',
+              shared: true,
+              useHTML: true
+    },
+    plotOptions: {
+              column: {
+      pointPadding: 0.2,
+      borderWidth: 0
+        }
+    },
+
+    series: [{
+              name: 'Cantidad de usuarios',
+              data: _values
+
+    }]
+      });
+      var chart = $('#container1').highcharts();
+
+      function actualiza_contenido() {
+
+            chart.reflow();
+
+      }
+
+      setInterval("actualiza_contenido()", 10000);
+
+
+
+
+
+      </script>
+
+        </div>
+        </div>
+{% endblock %}
